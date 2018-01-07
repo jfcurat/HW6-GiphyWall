@@ -25,12 +25,13 @@ $('#submit-topic').on('click', function(event) {
 	topics.push(topicToAdd);
 	console.log('topics array after .push(topicToAdd) is: ' + topics);
 	makeButtons();
+	$('#topic-entry-input').val(''); //to make text input box clear after pressing enter or clicking submit button
 });
 
 //give the topic buttons a different class .gifTopicButtons so that this won't apply to the submit button.
 $('.gifTopicButtons').on('click', function() {
 	var gifsTopic = $(this).attr('data-topic');
-
+	console.log("gifsTopic is: " + gifsTopic);
 	//break out the query string parameters into vars
 	var url = 'https://api.giphy.com/v1/gifs/search?';
 	var apiKey = 'api_key=nvNb9MHt4xzv60kubg11U9BF7A6Mkr92';
