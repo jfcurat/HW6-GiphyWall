@@ -17,6 +17,9 @@ function makeButtons() {
 	}
 }
 
+//to display starting buttons
+makeButtons();
+
 //jQuery to save the value from the input box as var and add to topics array, put in function to call on click of submit new topic button
 $('#submit-topic').on('click', function(event) {
 	event.preventDefault(); //to make using enter key not reload page
@@ -24,7 +27,9 @@ $('#submit-topic').on('click', function(event) {
 	console.log('topicToAdd = ' + topicToAdd);
 	topics.push(topicToAdd);
 	console.log('topics array after .push(topicToAdd) is: ' + topics);
+
 	makeButtons();
+
 	$('#topic-entry-input').val(''); //to make text input box clear after pressing enter or clicking submit button
 });
 
@@ -35,7 +40,7 @@ $('.gifTopicButtons').on('click', function() {
 	//break out the query string parameters into vars
 	var url = 'https://api.giphy.com/v1/gifs/search?';
 	var apiKey = 'api_key=nvNb9MHt4xzv60kubg11U9BF7A6Mkr92';
-	var searchTerm = '&q=test' //+ boxTerm; //use + for spaces
+	var searchTerm = '&q=' + gifsTopic; //use + for spaces
 	var gifsAmount = '&limit=10';
 
 	var queryURL = url + apiKey + searchTerm + gifsAmount;
@@ -46,9 +51,9 @@ $('.gifTopicButtons').on('click', function() {
 		url: queryURL,
 		method: 'GET'
 	}).done(function(response) {
-		console.log('response = ' + response);
+		//console.log('response = ' + response);
 		var results = response.data;
-		console.log('var results = ' + results);
+		//console.log('var results = ' + results);
 
 	});
 });
