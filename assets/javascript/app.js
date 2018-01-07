@@ -4,7 +4,8 @@ var topics = ['topic1', 'topic2', 'topic3', 'topic4', 'topic5', 'topic6', 'topic
 console.log('starting topics = ' + topics);
 
 //jQuery to save the value from the input box as var and add to topics array, put in function to call on click of submit new topic button
-$('#submit-topic').on('click', function() {
+$('#submit-topic').on('click', function(event) {
+	event.preventDefault(); //to make using enter key not reload page
 	var topicToAdd = $('#topic-entry-input').val().trim();
 	console.log('topicToAdd = ' + topicToAdd);
 	topics.push(topicToAdd);
