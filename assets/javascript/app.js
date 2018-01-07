@@ -3,6 +3,20 @@
 var topics = ['topic1', 'topic2', 'topic3', 'topic4', 'topic5', 'topic6', 'topic7', 'topic8', 'topic9', 'topic10'];
 console.log('starting topics = ' + topics);
 
+//then make the button's data-topic populate the boxTerm to fill-in the var searchTerm correctly to pass to var queryURL
+function makeButtons() {
+	//fix duplicate button lists problem
+	$('#button-display-zone').empty();
+	//loop thru topics array and make a button for each topic w/ class .gifTopicButtons, and attribute data-topic and text set to topics index.
+	for (var i = 0; i < topics.length; i++) {
+		var newButton = $('<button>');
+		newButton.addClass('gifTopicButtons');
+		newButton.attr('data-topic', topics[i]);
+		newButton.text(topics[i]);
+		$('#button-display-zone').append(newButton);
+	}
+}
+
 //jQuery to save the value from the input box as var and add to topics array, put in function to call on click of submit new topic button
 $('#submit-topic').on('click', function(event) {
 	event.preventDefault(); //to make using enter key not reload page
@@ -10,15 +24,11 @@ $('#submit-topic').on('click', function(event) {
 	console.log('topicToAdd = ' + topicToAdd);
 	topics.push(topicToAdd);
 	console.log('topics array after .push(topicToAdd) is: ' + topics);
+	makeButtons();
 });
 
-//need to make buttons w/ value data-topic of the text-input submission
-//then make the button's data-topic populate the boxTerm to fill-in the var searchTerm correctly to pass to var queryURL
-//append button to button-display-zone. make label value of data-topic
-//$('#button-display-zone').append('<button>').innerHTML(boxTerm);
-
-//give the topic buttons a different class so that this won't apply to the submit button.
-$('button').on('click', function() {
+//give the topic buttons a different class .gifTopicButtons so that this won't apply to the submit button.
+$('.gifTopicButtons').on('click', function() {
 	var gifsTopic = $(this).attr('data-topic');
 
 	//break out the query string parameters into vars
@@ -37,7 +47,7 @@ $('button').on('click', function() {
 	}).done(function(response) {
 		console.log('response = ' + response);
 		var results = response.data;
-		console.log("var results = " + results);
+		console.log('var results = ' + results);
 
 	});
 });
