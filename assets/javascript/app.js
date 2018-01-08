@@ -34,7 +34,7 @@ $('#submit-topic').on('click', function(event) {
 });
 
 //give the topic buttons a different class .gifTopicButtons so that this won't apply to the submit button.
-$('.gifTopicButtons').on('click', function() {
+$(document).on('click', '.gifTopicButtons', function() {
 	var gifsTopic = $(this).attr('data-topic');
 	console.log("gifsTopic clicked was: " + gifsTopic);
 
