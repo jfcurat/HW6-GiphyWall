@@ -1,6 +1,6 @@
 //array of strings - to be used as gif genres
 //possible topics: music (general), guitar, cats, dogs, food, videogames, tech, camping, hiking, fishing, fish?
-var topics = ['topic1', 'topic2', 'topic3', 'topic4', 'topic5', 'topic6', 'topic7', 'topic8', 'topic9', 'topic10'];
+var topics = ['guitars', 'pizza', 'dogs', 'cats', 'videogames', 'camping', 'fishing', 'cooking', 'music', 'derp'];
 console.log('starting topics = ' + topics);
 
 //then make the button's data-topic populate the boxTerm to fill-in the var searchTerm correctly to pass to var queryURL
@@ -36,7 +36,7 @@ $('#submit-topic').on('click', function(event) {
 //give the topic buttons a different class .gifTopicButtons so that this won't apply to the submit button.
 $('.gifTopicButtons').on('click', function() {
 	var gifsTopic = $(this).attr('data-topic');
-	console.log("gifsTopic is: " + gifsTopic);
+	console.log("gifsTopic clicked was: " + gifsTopic);
 	//break out the query string parameters into vars
 	var url = 'https://api.giphy.com/v1/gifs/search?';
 	var apiKey = 'api_key=nvNb9MHt4xzv60kubg11U9BF7A6Mkr92';
@@ -51,9 +51,23 @@ $('.gifTopicButtons').on('click', function() {
 		url: queryURL,
 		method: 'GET'
 	}).done(function(response) {
-		//console.log('response = ' + response);
-		var results = response.data;
-		//console.log('var results = ' + results);
+		console.log('response = ' + response);
+		var resultsData = response.data;
+		console.log('var resultsData = ' + resultsData);
 
+		for (var i = 0; i < resultsData.length; i++) {
+			var gifAndRatingPostArea = $('<span>');
+			gifAndRatingPostArea.addClass('gifWallItem');
+
+			var gifRating = resultsData[i].rating;
+			var ratingDisplay = $('<p>').text('Rating = ' + gifRating);
+			var gifImage = $('<img>');
+			gifImage.attr('src', resultsData[i].images.fixed_height.url);
+
+			$('#gif-wall-display-zone').append(gifAndRatingPostArea)
+			gifAndRatingPostArea.append(gifRating);
+			gifAndRatingPostArea.append(gifImage);
+			console.log('LoopFired');
+		}
 	});
 });
