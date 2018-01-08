@@ -54,6 +54,7 @@ $(document).on('click', '.gifTopicButtons', function() {
 	}).done(function(response) {
 		var resultsData = response.data;
 
+		//loop thru results and populate gifAndRatingPostArea with ratings and gifs
 		for (var i = 0; i < resultsData.length; i++) {
 			var gifAndRatingPostArea = $('<span>');
 			gifAndRatingPostArea.addClass('gifWallItem');
@@ -61,15 +62,30 @@ $(document).on('click', '.gifTopicButtons', function() {
 			var gifRating = 'Rating = ' + resultsData[i].rating;
 			var ratingDisplay = $('<div>').text(gifRating);
 			var gifImage = $('<img>');
-			//make gifs start as still images then change to animated when clicked, or back to still when clicked again.
+			//make gifs start as still images. set attributes to be able to change state on click w/ other function
+			gifImage.addClass('gifs');
 			gifImage.attr('src', resultsData[i].images.fixed_height_still.url);
 			gifImage.attr('data-still', resultsData[i].images.fixed_height_still.url);
 			gifImage.attr('data-animate', resultsData[i].images.fixed_height.url);
 			gifImage.attr('data-state', 'still');
-
+			//append the gifs and ratings to the PostArea
 			$('#gif-wall-display-zone').append(gifAndRatingPostArea)
 			gifAndRatingPostArea.append(gifRating);
 			gifAndRatingPostArea.append(gifImage);
 		}
 	});
 });
+
+//change animationState of the gifs when clicked
+$(document).on('click', '.gifs', function() {
+	var animationState = $(this).attr('data-state');
+	//if gif is still, make it animate when clicked; if it's animated, make it stop
+	if (animationState === 'still') {
+		$(this).attr('src', $(this).attr('data-animate'));
+		$(this).attr('data-state', 'animate');
+	}
+	else if (animationState === 'animate') {
+		$(this).attr('src', $(this).attr('data-still'));
+		$(this).attr('data-state', 'still');
+	}
+})
