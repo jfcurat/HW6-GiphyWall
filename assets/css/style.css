@@ -10,3 +10,8 @@ body {
 button {
 	margin: 2.5px;
 }
+
+.gifWallItem {
+	margin: 6px;
+	float: left;
+}
