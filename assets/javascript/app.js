@@ -61,7 +61,11 @@ $(document).on('click', '.gifTopicButtons', function() {
 			var gifRating = 'Rating = ' + resultsData[i].rating;
 			var ratingDisplay = $('<div>').text(gifRating);
 			var gifImage = $('<img>');
-			gifImage.attr('src', resultsData[i].images.fixed_height.url);
+			//make gifs start as still images then change to animated when clicked, or back to still when clicked again.
+			gifImage.attr('src', resultsData[i].images.fixed_height_still.url);
+			gifImage.attr('data-still', resultsData[i].images.fixed_height_still.url);
+			gifImage.attr('data-animate', resultsData[i].images.fixed_height.url);
+			gifImage.attr('data-state', 'still');
 
 			$('#gif-wall-display-zone').append(gifAndRatingPostArea)
 			gifAndRatingPostArea.append(gifRating);
