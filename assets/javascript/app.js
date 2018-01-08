@@ -1,5 +1,7 @@
 //array of strings - to be used as gif genres
-var topics = ['metal', 'pizza', 'dogs', 'cats', 'videogames', 'computers', 'fishing', 'cooking', 'derp', 'nic cage'];
+var topics = ['metal', 'pizza', 'dogs', 'cats', 'videogames', 'computers', 'fishing',
+	'cooking', 'derp', 'nic cage', 'steve brule', 'juggalo', 'space',
+	'fatality', 'homer simpson', 'rum ham', 'prishpreed']; //had to leave the doug prishpreed even though it's the only gif ha
 
 //function to make buttons render
 function makeButtons() {
@@ -59,7 +61,7 @@ $(document).on('click', '.gifTopicButtons', function() {
 			var gifAndRatingPostArea = $('<span>');
 			gifAndRatingPostArea.addClass('gifWallItem');
 
-			var gifRating = 'Rating = ' + resultsData[i].rating;
+			var gifRating = 'Rating = ' + resultsData[i].rating + ' ';
 			var ratingDisplay = $('<div>').text(gifRating);
 			var gifImage = $('<img>');
 			//make gifs start as still images. set attributes to be able to change state on click w/ other function
@@ -88,4 +90,4 @@ $(document).on('click', '.gifs', function() {
 		$(this).attr('src', $(this).attr('data-still'));
 		$(this).attr('data-state', 'still');
 	}
-})
+});

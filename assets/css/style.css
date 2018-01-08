@@ -1,17 +1,45 @@
 /*include any extra css tweaks here*/
 body {
 	font-family: 'Inconsolata', monospace;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	background-image: url('../images/background.png');
 }
 
 .jumbotron {
-	color: red;
+	color: lime;
+	padding: 0.5em;
+	background-image: url('../images/jumbotron-background.png');
 }
 
 button {
 	margin: 2.5px;
+	color: blue;
+	font-size: 2em;
 }
 
 .gifWallItem {
 	margin: 6px;
 	float: left;
+}
+
+label {
+	color: red;
+	font-size: 2em;
+}
+
+#topic-entry-input {
+	color: blue;
+	font-size: 2em;
+}
+
+#submit-topic {
+	color: red;
+	font-size: 2em;
+}
+
+#gif-wall-display-zone {
+	color: green;
+	font-size: 1.5em;
 }
