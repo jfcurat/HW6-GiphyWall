@@ -1,5 +1,5 @@
 //array of strings - to be used as gif genres
-var topics = ['metal', 'pizza', 'dogs', 'cats', 'videogames', 'computers', 'fishing', 'cooking', 'gardening', 'derp'];
+var topics = ['metal', 'pizza', 'dogs', 'cats', 'videogames', 'computers', 'fishing', 'cooking', 'derp', 'nic cage'];
 
 //function to make buttons render
 function makeButtons() {
